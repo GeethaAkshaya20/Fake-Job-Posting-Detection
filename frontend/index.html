@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JobShield</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <!-- Logo -->
+                <div class="navbar-logo">
+                    <span class="logo-icon">🛡️</span>
+                    <span class="logo-text">JobShield</span>
+                </div>
+
+                <!-- Navigation Links -->
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    <!-- Dark Mode Toggle in Menu (Mobile Only) -->
+                    <li class="nav-item nav-toggle-item">
+                        <div class="dark-mode-toggle-menu">
+                            <input type="checkbox" id="darkmode-checkbox-menu" class="checkbox">
+                            <label for="darkmode-checkbox-menu" class="checkbox-label">
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Dark Mode Toggle -->
+                <div class="dark-mode-toggle">
+                    <input type="checkbox" id="darkmode-checkbox" class="checkbox">
+                    <label for="darkmode-checkbox" class="checkbox-label">
+                        <span class="icon light-icon">☀️</span>
+                        <span class="icon dark-icon">🌙</span>
+                    </label>
+                </div>
+
+                <!-- Hamburger Menu Button -->
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section id="home" class="section">
+                <h1>Welcome to JobShield</h1>
+                <p>Detect fake job postings with confidence</p>
+
+                <!-- Input Section -->
+                <div class="input-container">
+                    <h2>Analyze a Job Posting</h2>
+                    <form id="prediction-form" class="prediction-form">
+                        <div class="form-group">
+                            <textarea id="job-description" class="textarea" placeholder="Enter the job posting description here..." rows="10" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Analyze</button>
+                    </form>
+                </div>
+
+                <!-- Result Section (Hidden by default) -->
+                <div id="result-section" class="result-section hidden">
+                    <div class="result-container">
+                        <h2>Analysis Result</h2>
+                        
+                        <div class="result-header">
+                            <div class="status-badge" id="status-badge">
+                                <h3 id="status-text"></h3>
+                            </div>
+                            <div class="probability-display">
+                                <p class="probability-label">Confidence Level</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress-fill"></div>
+                                </div>
+                                <p class="probability-value" id="probability-value">0%</p>
+                            </div>
+                        </div>
+
+                        <div class="keywords-section">
+                            <h3>Key Indicators</h3>
+                            <div class="keywords-list" id="keywords-list">
+                                <!-- Keywords will be inserted here -->
+                            </div>
+                        </div>
+
+                        <button id="close-result-btn" class="btn btn-secondary">Analyze Another</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="section about-section">
+                <div class="container">
+                    <h2>About JobShield</h2>
+                    <p class="section-subtitle">Protecting job seekers from fraudulent postings</p>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>JobShield is an AI-powered platform designed to protect job seekers from fraudulent postings. We analyze language patterns, company details, and red flags to give you instant, accurate results.</p>
+                            <p>With real-time intelligent analysis, we deliver 95%+ accuracy through an intuitive interface that's completely free for all users. Our system focuses on what matters most—keeping you safe from scams.</p>
+                        </div>
+                        <div class="about-stats">
+                            <div class="stat-card">
+                                <h3>10K+</h3>
+                                <p>Job Postings Analyzed</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>95%</h3>
+                                <p>Detection Accuracy</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>1000+</h3>
+                                <p>Users Protected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="section services-section">
+                <div class="container">
+                    <h2>Our Services</h2>
+                    <p class="section-subtitle">Comprehensive job posting verification</p>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <div class="service-icon">🔍</div>
+                            <h3>Quick Analysis</h3>
+                            <p>Get instant results on whether a job posting is real or fake with our rapid-fire detection system.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">📊</div>
+                            <h3>Detailed Insights</h3>
+                            <p>Receive comprehensive analysis with confidence levels and key indicators that flag potential risks.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🛡️</div>
+                            <h3>Risk Assessment</h3>
+                            <p>Understand the specific red flags identified in each posting to make safer job application decisions.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">📱</div>
+                            <h3>Mobile Friendly</h3>
+                            <p>Access JobShield from any device with our fully responsive web application.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">🔐</div>
+                            <h3>Secure & Private</h3>
+                            <p>Your data is protected with enterprise-grade security. No storage of personal information.</p>
+                        </div>
+                        <div class="service-card">
+                            <div class="service-icon">⚡</div>
+                            <h3>Always Available</h3>
+                            <p>24/7 access to job posting verification without any downtime or limitations.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="section testimonials-section">
+                <div class="container">
+                    <h2>What Our Users Say</h2>
+                    <p class="section-subtitle">Real stories from protected job seekers</p>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="testimonial-text">"JobShield saved me from applying to a fake job posting. The analysis was accurate and helped me identify red flags I would have missed."</p>
+                            <p class="testimonial-author">- Sarah M., Software Engineer</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="testimonial-text">"I wish I had known about JobShield earlier. It's a game-changer for job seekers who want to protect themselves from scams."</p>
+                            <p class="testimonial-author">- John D., Marketing Manager</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p class="testimonial-text">"The confidence levels and key indicators provided by JobShield give me peace of mind when browsing job portals. Highly recommended!"</p>
+                            <p class="testimonial-author">- Priya K., Product Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="section contact-section">
+                <div class="container">
+                    <h2>Get In Touch</h2>
+                    <p class="section-subtitle">We'd love to hear from you</p>
+                    <div class="contact-wrapper">
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="contact-info-simple">
+                        <p><strong>📧</strong> support@jobshield.com | <strong>📱</strong> +1 (800) 123-4567</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <span class="logo-icon">🛡️</span>
+                            <span class="logo-text">JobShield</span>
+                        </div>
+                        <p>Protecting job seekers from fraudulent postings worldwide.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Follow Us</h4>
+                        <ul class="social-links">
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 JobShield. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <script>
+        // Dark Mode Toggle
+        const darkModeCheckbox = document.getElementById('darkmode-checkbox');
+        const darkModeCheckboxMenu = document.getElementById('darkmode-checkbox-menu');
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const body = document.body;
+
+        // Load dark mode preference from localStorage
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (isDarkMode) {
+            body.classList.add('dark-mode');
+            darkModeCheckbox.checked = true;
+            darkModeCheckboxMenu.checked = true;
+        }
+
+        // Toggle dark mode
+        darkModeCheckbox.addEventListener('change', function() {
+            body.classList.toggle('dark-mode');
+            darkModeCheckboxMenu.checked = this.checked;
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+        });
+
+        // Sync menu checkbox with navbar checkbox
+        darkModeCheckboxMenu.addEventListener('change', function() {
+            body.classList.toggle('dark-mode');
+            darkModeCheckbox.checked = this.checked;
+            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            // Close menu after toggle
+            hamburgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+
+        // Hamburger Menu Toggle
+        hamburgerMenu.addEventListener('click', function() {
+            hamburgerMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a nav link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = document.querySelector('.navbar').contains(event.target);
+            if (!isClickInsideNav && navMenu.classList.contains('active')) {
+                hamburgerMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Prediction Form Handler
+        const predictionForm = document.getElementById('prediction-form');
+        const jobDescriptionInput = document.getElementById('job-description');
+        const resultSection = document.getElementById('result-section');
+        const closeResultBtn = document.getElementById('close-result-btn');
+        const statusBadge = document.getElementById('status-badge');
+        const statusText = document.getElementById('status-text');
+        const progressFill = document.getElementById('progress-fill');
+        const probabilityValue = document.getElementById('probability-value');
+        const keywordsList = document.getElementById('keywords-list');
+
+        predictionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const jobDescription = jobDescriptionInput.value.trim();
+            
+            if (jobDescription.length === 0) {
+                alert('Please enter a job description');
+                return;
+            }
+
+            // Call prediction API or ML model
+            analyzJobPosting(jobDescription);
+        });
+
+        function analyzJobPosting(description) {
+    fetch('http://127.0.0.1:5000/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ description: description })
+    })
+    .then(response => response.json())
+    .then(data => {
+        displayResults({
+            prediction: data.prediction,
+            probability: Math.round(data.probability),
+            keywords: data.keywords
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Server error. Make sure backend is running.');
+    });
+}
+
+        function displayResults(result) {
+            // Update status badge
+            const isReal = result.prediction === 'REAL';
+            statusBadge.className = 'status-badge ' + (isReal ? 'real' : 'fake');
+            statusText.textContent = isReal ? '✓ REAL JOB' : '✗ FAKE JOB';
+
+            // Update probability
+            const probability = result.probability || 0;
+            progressFill.style.width = probability + '%';
+            probabilityValue.textContent = probability + '%';
+
+            // Update keywords
+            keywordsList.innerHTML = '';
+            if (result.keywords && Array.isArray(result.keywords)) {
+                result.keywords.forEach(keyword => {
+                    const badge = document.createElement('span');
+                    badge.className = 'keyword-badge ' + keyword.type;
+                    badge.textContent = '• ' + keyword.word;
+                    keywordsList.appendChild(badge);
+                });
+            }
+
+            // Show result section
+            resultSection.classList.remove('hidden');
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Close result and reset form
+        closeResultBtn.addEventListener('click', function() {
+            resultSection.classList.add('hidden');
+            jobDescriptionInput.value = '';
+            jobDescriptionInput.focus();
+        });
+    </script>
+</html>
