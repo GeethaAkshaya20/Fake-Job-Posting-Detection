@@ -65,13 +65,13 @@ def predict():
     data = request.get_json()
     title = data.get('title', '')
     company = data.get('company', '')
-    location = data.get('location', '')
+    experience = data.get('experience', '')
     salary = data.get('salary', '')
     description = data.get('description', '')
     requirements = data.get('requirements', '')
 
     # Combine everything
-    full_text = f"{title} {company} {location} {description} {requirements} {salary}"
+    full_text = f"{title} {company} {experience} {salary} {description} {requirements}"
 
     clean_text = preprocess(full_text)
 

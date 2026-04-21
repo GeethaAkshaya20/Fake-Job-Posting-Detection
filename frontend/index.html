@@ -67,7 +67,8 @@
                 <div class="login-required-content">
                     <div class="login-required-icon">🔐</div>
                     <h2>Sign In to Continue</h2>
-                    <p>Please log in to your account to start analyzing job postings and protect yourself from fraud.</p>
+                    <p>Please log in to your account to start analyzing job postings and protect yourself from fraud.
+                    </p>
                     <div class="login-required-buttons">
                         <a href="login.html" class="btn btn-secondary btn-lg">Sign In</a>
                         <a href="register.html" class="btn btn-secondary btn-lg">Create Account</a>
@@ -96,13 +97,14 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="location">Location *</label>
-                            <input type="text" id="location" class="form-input" placeholder="e.g., San Francisco, CA"
+                            <label for="experience">Experience *</label>
+                            <input type="text" id="experience" class="form-input" placeholder="e.g., 0-5 years"
                                 required>
                         </div>
                         <div class="form-group">
-                            <label for="salary">Salary</label>
-                            <input type="text" id="salary" class="form-input" placeholder="e.g., $80k - $120k/year">
+                            <label for="salary">Salary *</label>
+                            <input type="text" id="salary" class="form-input" placeholder="e.g., $80k - $120k/year"
+                                required>
                         </div>
                     </div>
 
@@ -158,12 +160,13 @@
                 <p class="section-subtitle">Protecting job seekers from fraudulent postings</p>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>JobShield is an AI-powered platform designed to protect job seekers from fraudulent postings.
-                            We analyze language patterns, company details, and red flags to give you instant, accurate
-                            results.</p>
-                        <p>With real-time intelligent analysis, we deliver 95%+ accuracy through an intuitive interface
-                            that's completely free for all users. Our system focuses on what matters most—keeping you
-                            safe from scams.</p>
+                        <p>JobShield is an AI-powered system designed to detect fake job postings using machine learning
+                            and natural language processing techniques.It analyzes job descriptions, company
+                            information, and suspicious patterns to identify
+                            fraudulent listings with high accuracy.</p>
+                        <p>The system provides real-time analysis, helping users quickly determine whether a job is
+                            genuine or fake. By focusing on key indicators and risk patterns, JobShield ensures safer
+                            job searching and prevents users from falling into scams.</p>
                     </div>
                     <div class="about-stats">
                         <div class="stat-card">
@@ -171,7 +174,7 @@
                             <p>Job Postings Analyzed</p>
                         </div>
                         <div class="stat-card">
-                            <h3>95%</h3>
+                            <h3>98%</h3>
                             <p>Detection Accuracy</p>
                         </div>
                         <div class="stat-card">
@@ -220,8 +223,9 @@
                     </div>
                     <div class="service-card">
                         <div class="service-icon">⚡</div>
-                        <h3>Always Available</h3>
-                        <p>24/7 access to job posting verification without any downtime or limitations.</p>
+                        <h3>User-Friendly Interface</h3>
+                        <p>Simple and intuitive interface that allows anyone to verify job postings easily without
+                            technical knowledge.</p>
                     </div>
                 </div>
             </div>
@@ -389,7 +393,7 @@
     }
 
     // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         const userMenu = document.querySelector('.user-menu');
         const dropdown = document.getElementById('user-dropdown');
         if (userMenu && !userMenu.contains(event.target) && dropdown) {
@@ -474,7 +478,7 @@
         e.preventDefault();
         const title = document.getElementById('title').value.trim();
         const company = document.getElementById('company').value.trim();
-        const location = document.getElementById('location').value.trim();
+        const experience = document.getElementById('experience').value.trim();
         const salary = document.getElementById('salary').value.trim();
         const description = document.getElementById('description').value.trim();
         const requirements = document.getElementById('requirements').value.trim();
@@ -487,7 +491,7 @@
         analyzJobPosting({
             title,
             company,
-            location,
+            experience,
             salary,
             description,
             requirements
@@ -559,7 +563,7 @@
         resultSection.classList.add('hidden');
         document.getElementById('title').value = '';
         document.getElementById('company').value = '';
-        document.getElementById('location').value = '';
+        document.getElementById('experience').value = '';
         document.getElementById('salary').value = '';
         document.getElementById('description').value = '';
         document.getElementById('requirements').value = '';
