@@ -16,7 +16,7 @@ function checkLoginStatus() {
                         <span class="dropdown-arrow">▼</span>
                     </button>
                     <div class="user-dropdown" id="user-dropdown">
-                        <a href="#" class="dropdown-item">Profile</a>
+                        <a href="profile.html" class="dropdown-item">Profile</a>
                         <a href="#" class="dropdown-item">Settings</a>
                         <hr style="margin: 8px 0; border: none; border-top: 1px solid var(--input)">
                         <button class="dropdown-item" onclick="logout()">Logout</button>
@@ -69,6 +69,19 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', checkLoginStatus);
 } else {
     checkLoginStatus();
+}
+
+// Function to show in-page messages
+function showMessage(message, type) {
+    const messageDiv = document.getElementById('message');
+    if (messageDiv) {
+        messageDiv.textContent = message;
+        messageDiv.className = `message-notification ${type}`;
+        messageDiv.classList.add('show');
+        setTimeout(() => {
+            messageDiv.classList.remove('show');
+        }, 3000); // Disappear after 3 seconds
+    }
 }
 
 // Dark Mode Toggle
@@ -149,8 +162,8 @@ if (registerForm) {
         });
 
         const result = await response.json();
-        alert(result.message);
-        if (response.ok) window.location.href = 'login.html';
+        showMessage(result.message, response.ok ? 'success' : 'error');
+        if (response.ok) setTimeout(() => window.location.href = 'login.html', 3000);
     });
 }
 
@@ -171,9 +184,104 @@ if (loginForm) {
         const result = await response.json();
         if (response.ok) {
             localStorage.setItem('userName', result.user);
+            localStorage.setItem('userEmail', email);
             window.location.href = 'index.html';
         } else {
-            alert(result.message);
+            showMessage(result.message, 'error');
         }
+    });
+}
+
+// Prediction form handler
+const predictionForm = document.getElementById('prediction-form');
+if (predictionForm) {
+    predictionForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById('title').value;
+        const company = document.getElementById('company').value;
+        const experience = document.getElementById('experience').value;
+        const salary = document.getElementById('salary').value;
+        const description = document.getElementById('description').value;
+        const requirements = document.getElementById('requirements').value;
+        const userEmail = localStorage.getItem('userEmail') || '';
+
+        console.log('Prediction form submitted');
+        console.log('Form data:', { title, company, experience, salary, description, userEmail });
+
+        try {
+            const response = await fetch('http://127.0.0.1:5000/predict-and-save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    title,
+                    company,
+                    experience,
+                    salary,
+                    description,
+                    requirements,
+                    userEmail
+                })
+            });
+
+            console.log('Response status:', response.status);
+            const result = await response.json();
+            console.log('Response data:', result);
+
+            if (result.prediction === 'INVALID INPUT') {
+                showMessage(result.message, 'error');
+                return;
+            }
+
+            // Display result
+            displayPredictionResult(result);
+        } catch (error) {
+            console.error('Error submitting prediction:', error);
+            showMessage('Error analyzing job posting', 'error');
+        }
+    });
+}
+
+// Function to display prediction result
+function displayPredictionResult(result) {
+    const resultSection = document.getElementById('result-section');
+    const statusBadge = document.getElementById('status-badge');
+    const statusText = document.getElementById('status-text');
+    const probabilityValue = document.getElementById('probability-value');
+    const progressFill = document.getElementById('progress-fill');
+    const keywordsList = document.getElementById('keywords-list');
+
+    // Update status badge
+    statusBadge.className = 'status-badge ' + result.prediction.toLowerCase();
+    const statusEmoji = result.prediction === 'FAKE' ? '❌' : result.prediction === 'REAL' ? '✅' : '⚠️';
+    statusText.textContent = statusEmoji + ' ' + result.prediction;
+
+    // Update probability
+    const probability = result.probability || 0;
+    probabilityValue.textContent = probability.toFixed(1) + '%';
+    progressFill.style.width = probability + '%';
+
+    // Update keywords
+    keywordsList.innerHTML = '';
+    if (result.keywords && result.keywords.length > 0) {
+        result.keywords.forEach(kw => {
+            const keyword = document.createElement('span');
+            keyword.className = 'keyword-badge ' + kw.type;
+            keyword.textContent = kw.word;
+            keywordsList.appendChild(keyword);
+        });
+    }
+
+    // Show result section
+    resultSection.classList.remove('hidden');
+    resultSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Close result and reset form
+const closeResultBtn = document.getElementById('close-result-btn');
+if (closeResultBtn) {
+    closeResultBtn.addEventListener('click', () => {
+        document.getElementById('result-section').classList.add('hidden');
+        document.getElementById('prediction-form').reset();
     });
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - JobShield</title>
+    <title>Profile - JobShield</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,7 +13,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <!-- Logo -->
-            <div class="navbar-logo">
+            <div class="navbar-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
                 <span class="logo-icon">🛡️</span>
                 <span class="logo-text">JobShield</span>
             </div>
@@ -21,10 +21,12 @@
             <!-- Navigation Links -->
             <ul class="nav-menu" id="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                <li class="nav-item"><button type="button" class="nav-button" onclick="window.location.href='register.html'">Register</button></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li class="nav-item" id="auth-nav-item">
+                    <button type="button" class="nav-button" onclick="window.location.href='login.html'">Login</button>
+                </li>
                 <!-- Dark Mode Toggle in Menu (Mobile Only) -->
                 <li class="nav-item nav-toggle-item">
                     <div class="dark-mode-toggle-menu">
@@ -53,52 +55,49 @@
         </div>
     </nav>
 
-    <!-- Login Section -->
-    <section class="login-section">
-        <div class="card auth-card card-centered" style="margin:0;">
-            <div class="mb-8">
-                <div class="auth-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-                        <polyline points="10 17 15 12 10 7" />
-                        <line x1="15" y1="12" x2="3" y2="12" />
-                    </svg>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <div class="profile-container">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-info">
+                        <h1 id="profileName">User Name</h1>
+                        <p id="profileEmail">user@example.com</p>
+                    </div>
                 </div>
-                <h1>Welcome Back</h1>
-                <p class="subtitle">Sign in to your account</p>
+
+                <!-- Profile Stats -->
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="statsAnalyzed">0</div>
+                        <div class="stat-label">Postings Analyzed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statsFake">0</div>
+                        <div class="stat-label">Fake Detected</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="statsReal">0</div>
+                        <div class="stat-label">Real Postings</div>
+                    </div>
+                </div>
+
+                <!-- Recent Analyses -->
+                <div class="recent-section">
+                    <h2>Recent Analyzed Postings</h2>
+                    <div id="recentAnalyses" class="analyses-list">
+                        <div class="analyses-loading">Loading your analyses...</div>
+                    </div>
+                </div>
             </div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <div class="input-wrapper">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="4" width="20" height="16" rx="2" />
-                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                        </svg>
-                        <input class="form-input" id="email" type="email" placeholder="you@example.com" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="input-wrapper">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="11" width="18" height="11" rx="2" />
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                        </svg>
-                        <input class="form-input" id="password" type="password" placeholder="••••••••" required>
-                    </div>
-                </div>
-                <div style="text-align:right; margin-bottom:16px;">
-                    <a href="forgot_password.html" class="text-link text-sm">Forgot password?</a>
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
-            </form>
-            <div id="message" class="message-notification"></div>
-            <p class="text-center text-sm text-muted mt-6">
-                Don't have an account? <a href="register.html" class="text-link">Create one</a>
-            </p>
-        </div>
-    </section>
+        </section>
+
+        <!-- Message Notification -->
+        <div id="message" class="message-notification"></div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -114,11 +113,11 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <!-- <li><a href="#testimonials">Testimonials</a></li> -->
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#testimonials">Testimonials</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -147,6 +146,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="profile.js"></script>
 </body>
 
 </html>
