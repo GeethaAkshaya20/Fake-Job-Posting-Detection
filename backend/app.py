@@ -5,11 +5,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import pickle
 import re
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 
-app = Flask(__name__)
+load_dotenv() 
+
 CORS(app)
 
-app.config["MONGO_URI"] = "mongodb+srv://sushmavangala3005:Sushma2305@cluster0.2inx41u.mongodb.net/jobshield?appName=Cluster0"
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 db = mongo.db.users # Access the 'users' collection
 analyses_collection = mongo.db.analyses # Collection for storing analyses
