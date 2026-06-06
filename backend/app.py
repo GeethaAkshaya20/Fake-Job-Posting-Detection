@@ -12,7 +12,7 @@ load_dotenv()
 
 CORS(app)
 
-app.config["MONGO_URI"] = os.getenv("MONGO_URI")
+app.config["MONGO_URI"] = os.getenv("MONGO_URL")
 mongo = PyMongo(app)
 db = mongo.db.users # Access the 'users' collection
 analyses_collection = mongo.db.analyses # Collection for storing analyses
